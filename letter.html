@@ -45,8 +45,14 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      
     }
+
+    @media only screen and (max-width: 768px) {
+     .hero {
+        background: var(--navy);
+      }
+    }
+
     .hero-bg {
       position: absolute;
       inset: 0;
@@ -55,6 +61,15 @@
       background-position: top;
       background-repeat: no-repeat;
     }
+
+
+    @media only screen and (max-width: 768px) {
+    .hero-bg {
+        position: relative;
+        aspect-ratio: 16/9;
+      }
+    }
+
     
     .hero-bg::after {
       content: '';
@@ -82,6 +97,13 @@
       );
       z-index: 1;
     }
+    
+    @media only screen and (max-width: 768px) {
+			 .hero-bg::after, .hero-bg::before {
+        display: none;
+      }
+	  }
+
     .hero-nav {
       position: relative;
       z-index: 10;
@@ -127,6 +149,12 @@
       }
 	  }
 
+    @media only screen and (max-width: 768px) {
+    .hero-inner {
+        padding-top: 40px;
+      }
+    }
+
     
 
     .accent-line {
@@ -151,6 +179,13 @@
       margin-bottom: 22px;
       letter-spacing: -0.5px;
     }
+
+    @media only screen and (max-width: 768px) {
+    .hero-headline {
+        font-size: 30px;
+      }
+    }
+
     .hero-headline em { color: white; font-style: normal; font-weight: 500;}
     .hero-sub {
       font-size: 18px;
@@ -375,11 +410,10 @@
 
   <!-- ─── Hero ─── -->
   <section class="hero">
-    <div class="hero-bg"></div>
-
     <nav class="hero-nav">
       <a href="index.html"><img src="files/SiteLogo.svg" alt="MAPDA — Mothers for Awareness and Prevention of Drug Abuse" /></a>
     </nav>
+    <div class="hero-bg"></div>
 
     <div class="hero-content">
       <div class="hero-inner">
