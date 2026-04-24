@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MAPDA — Fentanyl Homicide: Making Dealers Pay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #152338;
+    --red: #C8102E;
+    --red-deep: #a60d25;
+    --white: #FFFFFF;
+    --light: #f9f9f9;
+    --border: #E2E8F0;
+    --text: #1A1A2E;
+    --muted: #64748B;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text);
+    background: var(--light);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  a { color: var(--red); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .container { max-width: 1540px; margin: 0 auto; padding: 0 60px; }
+
+  @media only screen and (max-width: 768px) {
+			.container { padding: 0 30px; }
+	}
+
+  /* HERO */
+  .hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: linear-gradient(to bottom, var(--navy) 0%, var(--navy-mid) 100%);
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('files/Home.jpg');
+    background-size: auto 100%;
+    background-position: left center;
+    background-repeat: no-repeat;
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(11,18,30,0.05) 0%,
+      rgba(11,18,30,0.25) 30%,
+      rgba(11,18,30,0.82) 52%,
+      rgba(11,18,30,1) 66%
+    );
+  }
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(11,18,30,0.55) 0%,
+      transparent 18%,
+      transparent 75%,
+      rgba(11,18,30,0.5) 100%
+    );
+    z-index: 1;
+  }
+  .hero-nav {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 36px 60px 24px;
+  }
+  .hero-nav img { height: 38px; }
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 100px 80px;
+  }
+
+  @media only screen and (max-width: 768px) {
+			.hero-content {
+        padding: 100px 30px;
+      }
+		}
+
+  .hero-inner {
+    max-width: 760px;
+    width: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  .accent-line {
+    width: 44px;
+    height: 3px;
+    background: var(--red);
+    margin-bottom: 18px;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-size: 46px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--red);
+    margin-bottom: 22px;
+    letter-spacing: -0.5px;
+  }
+  .hero h1 em { color: white; font-style: normal; }
+  .hero-lede {
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.72);
+    margin-bottom: 32px;
+  }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  @media only screen and (max-width: 768px) {
+			.hero-ctas {
+        justify-content: center;
+      }
+		}
+
+  .btn {
+    display: inline-block;
+    background: var(--red);
+    color: white !important;
+    padding: 12px 26px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 13px;
+    border: none;
+    cursor: pointer;
+    border-radius: 0 0 20px 0;
+    transition: background 0.15s;
+    text-decoration: none;
+  }
+  .btn:hover { background: var(--red-deep); text-decoration: none; }
+  .btn-outline {
+    background: transparent;
+    border: 2px solid white;
+    color: white !important;
+  }
+  .btn-outline:hover { background: white; color: var(--navy) !important; }
+  .btn-big { padding: 16px 32px; font-size: 14px; }
+
+
+  /* ANALOGY BANNER */
+  .analogy {
+    background: var(--red);
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+  .analogy p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-style: italic;
+    max-width: 880px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+  .analogy p strong { font-style: normal; font-weight: 700; }
+
+  /* STATS */
+  .stats {
+    padding: 64px 0;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 58px;
+    font-weight: 900;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .stat-num sup { font-size: 26px; color: var(--red); vertical-align: super; }
+  .stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    font-weight: 700;
+  }
+
+  /* SECTION BASE */
+  section.content { padding: 80px 0; }
+  .section-eyebrow {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #50616B;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  .section-title {
+    font-size: 30px;
+    line-height: 1.15;
+    color: var(--navy);
+    margin-bottom: 18px;
+    letter-spacing: -0.3px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .section-lede {
+    font-size: 16px;
+    font-weight: 300;;
+    color: var(--muted);
+    max-width: 680px;
+    margin-bottom: 48px;
+    line-height: 1.65;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* FIGHT SECTION */
+  .fight { background: var(--light); padding: 0; }
+  .fight-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    min-height: 520px;
+    padding: 0 60px;
+  }
+
+
+   @media only screen and (max-width: 768px) {
+			.fight-container {
+        padding: 0 30px;
+      }
+	}
+
+  .fight-image {
+    height: 100%;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .fight-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 520px;
+    object-fit: cover;
+    display: block;
+    border-radius: 0 0 30px 0;
+  }
+  .fight-image-placeholder {
+    width: 100%;
+    min-height: 520px;
+    background: linear-gradient(135deg, #b8cce0 0%, #8aaac8 100%);
+    border-radius: 0 0 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .fight-content { padding: 80px 0 80px 0; max-width: 500px;}
+  .fight-accent {
+    width: 44px;
+    height: 3px;
+    background: var(--red);
+    margin-bottom: 18px;
+  }
+   .fight-content .section-eyebrow {text-align: left;}
+  .fight-title { color: var(--red) !important;  text-align: left;}
+  .fight-body { font-size: 17px; line-height: 1.8; color: var(--muted); font-family: 'Montserrat', sans-serif; }
+  .fight-body p + p { margin-top: 18px; }
+  .fight-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #0D1B2A 0%, #1e3a5a 100%);
+    color: white !important;
+    padding: 14px 32px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 0 0 20px 0;
+    margin-top: 32px;
+    transition: opacity 0.15s;
+    text-decoration: none;
+  }
+  .fight-btn:hover { opacity: 0.88; text-decoration: none; }
+  @media (max-width: 768px) {
+    .fight-container { grid-template-columns: 1fr; gap: 0; }
+    .fight-image, .fight-image img, .fight-image-placeholder { min-height: 280px; border-radius: 0; }
+    .fight-content { padding: 48px 24px; }
+  }
+
+  /* FIVE FRONTS */
+  .fronts { background: var(--light); }
+  .fronts .container {
+    max-width: 1300px;
+  }
+  .fronts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+   
+  }
+  .front {
+    background: var(--white);
+    padding: 28px 28px 24px;
+    border-top: 3px solid var(--red);
+    border-radius: 0 0 25px 0;
+    box-shadow: 0 2px 16px rgba(13,27,42,0.07);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .front:hover { box-shadow: 0 8px 28px rgba(13,27,42,0.12); transform: translateY(-2px); }
+  .front-icon { font-size: 17px; color: #ccc; display: block; }
+  .front-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .front h3 {
+    font-size: 19px;
+    color: var(--red);
+    line-height: 1.25;
+    font-weight: 700;
+  }
+  .front p { color: var(--muted); font-size: 14px; line-height: 1.68; flex: 1; }
+  .front-rule { border: none; border-top: 1px solid var(--border); margin: 4px 0; }
+  .front-btn {
+    display: block;
+    background: linear-gradient(135deg, #0D1B2A 0%, #1e3a5a 100%);
+    color: white !important;
+    padding: 13px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 0 0 20px 0;
+    text-decoration: none;
+    text-align: center;
+    transition: opacity 0.15s;
+    margin-top: 4px;
+  }
+  .front-btn:hover { opacity: 0.88; }
+  .front-dark {
+    border-top: none;
+    background: linear-gradient(142deg, var(--Tertiary, #0D1B2A) 0%, #1B4067 100%);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+  .front-dark:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(13,27,42,0.25); }
+  .front-dark .front-icon { color: rgba(255,255,255,0.4); }
+  .front-dark .front-num { color: rgba(255,255,255,0.52); }
+  .front-dark h3 { color: white; font-size: 28px; }
+  .front-dark p { color: rgba(255,255,255,0.68); }
+   .front-dark p a {color: #fff;}
+  .front-dark .front-rule { border-top-color: rgba(255,255,255,0.12); }
+  .front-arrow { display: none; justify-content: flex-end; font-size: 22px; color: white; margin-top: auto; }
+
+  /* 90 DAYS */
+  .ninety {
+    background: var(--navy);
+    background: linear-gradient(142deg, var(--Tertiary, #0D1B2A) 0%, #1B4067 100%);
+    color: white;
+    padding: 80px 0;
+  }
+  .ninety .section-eyebrow { color: #fff; }
+  .ninety .section-title { color: white; }
+  .ninety .section-lede { color: rgba(255,255,255,0.68); }
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .timeline-item {
+    border-left: 3px solid var(--red);
+    padding: 4px 0 4px 20px;
+  }
+  .timeline-item h4 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #fff;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .timeline-item p { font-size: 15px; line-height: 1.55; opacity: 0.88; }
+
+  /* STORIES */
+  .stories { background: var(--light); }
+  .stories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 28px;
+  }
+  .story {
+    background: var(--white);
+    padding: 32px 28px;
+    border-top: 3px solid var(--red);
+    box-shadow: 0 2px 16px rgba(13,27,42,0.07);
+    border-radius: 0 0 3px 3px;
+  }
+  .story blockquote {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--text);
+    font-style: italic;
+    margin-bottom: 18px;
+  }
+  .story .who {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .story .where {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* WIN */
+  .win {
+    background: var(--red);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+  }
+  .win h2 {
+    font-size: 36px;
+    line-height: 1.2;
+    max-width: 840px;
+    margin: 0 auto 24px;
+    font-weight: 700;
+  }
+  .win p {
+    font-size: 17px;
+    max-width: 600px;
+    margin: 0 auto 32px;
+    opacity: 0.92;
+  }
+  .win .btn-outline { border-color: white; color: white !important; }
+  .win .btn-outline:hover { background: white; color: var(--red) !important; }
+
+  /* JOIN CTA */
+  .join { background: var(--white); padding: 96px 0; text-align: center; }
+  .join h2 { font-size: 42px; color: var(--navy); margin-bottom: 16px; font-weight: 700; }
+  .join > .container > p { margin-top: 20px; font-size: 17px; color: var(--muted); max-width: 580px; margin: 0 auto 40px; line-height: 1.7; }
+  .join-form {
+    display: flex;
+    gap: 0;
+    max-width: 760px;
+    margin: 0 auto;
+    box-shadow: 0 4px 24px rgba(13,27,42,0.1);
+    border-radius: 0 0 20px 0;
+    overflow: hidden;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .join-form {
+      flex-direction: column;
+    }
+  }
+
+  .join-form input {
+    flex: 1;
+    padding: 18px 22px;
+    border: none;
+    border-right: 1px solid var(--border);
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+    background: var(--white);
+    color: var(--text);
+    min-width: 0;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .join-form input {
+      height: 55px;
+    }
+  }
+
+  .join-form input::placeholder { color: var(--muted); }
+  .join-form input:focus { background: #fafafa; }
+  .join-form .state-input { flex: 0 0 180px; border-right: 1px solid var(--border); }
+  .join-form button {
+    border: none;
+    border-radius: 0;
+    flex-shrink: 0;
+    padding: 18px 36px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .join-note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 20px !important;
+    font-style: italic;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.5);
+    padding: 24px 0;
+    font-size: 13px;
+  }
+  footer .foot-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 36px;
+    margin-bottom: 36px;
+  }
+  footer h5 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 8px; }
+  footer a { color: rgba(255,255,255,0.6); }
+  footer a:hover { color: white; text-decoration: none; }
+  .foot-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 36px; }
+    .hero-lede { font-size: 17px; }
+    .analogy p { font-size: 18px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .stat-num { font-size: 44px; }
+    .section-title { font-size: 28px; }
+    .win h2 { font-size: 26px; }
+    .join h2 { font-size: 28px; }
+    footer .foot-top { grid-template-columns: 1fr 1fr; }
+    .nav-links a:not(.btn) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+
+  <nav class="hero-nav">
+     <a href="index.html"><img src="files/SiteLogo.svg" alt="MAPDA — Mothers for Awareness and Prevention of Drug Abuse" /></a>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-inner">
+      <div class="accent-line"></div>
+      <div class="hero-eyebrow">The MAPDA Campaign — 2026</div>
+      <h1>Fentanyl Homicide.<br/>Make <em>Dealers</em> Pay.</h1>
+      <p class="hero-lede">Every state that won't treat a fentanyl death as a homicide is a state where dealers kill with legal impunity. We're closing that gap — statehouse by statehouse, courtroom by courtroom.</p>
+      <div class="hero-ctas">
+        <a href="#join" class="btn btn-big">Join the Fight</a>
+        <a href="#plan" class="btn btn-outline btn-big">See the 5-Front Plan</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANALOGY -->
+<section class="analogy">
+  <div class="container">
+    <p>We jail a bartender who overserves a customer who then kills someone on the road. <strong>We should jail a dealer who knowingly hands a lethal dose to someone's child.</strong></p>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div>
+        <div class="stat-num">33<sup>+DC</sup></div>
+        <div class="stat-label">States with DIH laws</div>
+      </div>
+      <div>
+        <div class="stat-num">200K</div>
+        <div class="stat-label">Colorado ballot signatures</div>
+      </div>
+      <div>
+        <div class="stat-num">16</div>
+        <div class="stat-label">Senate co-sponsors on Rubio bill</div>
+      </div>
+      <div>
+        <div class="stat-num">50</div>
+        <div class="stat-label">Mothers. One from every state.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE FIGHT -->
+<section id="fight" class="fight">
+  <div class="fight-container">
+    <div class="fight-image">
+      <div class="fight-image-placeholder">Image</div>
+    </div>
+    <div class="fight-content">
+      <div class="fight-accent"></div>
+      <div class="section-eyebrow">The Fight</div>
+      <h2 class="section-title fight-title">This isn't a drug policy debate. It's a homicide policy debate.</h2>
+      <div class="fight-body">
+        <p>Fentanyl kills faster than almost any other substance in modern history. A pill crushed into a line. A capsule slipped into a night out. Someone's son. Someone's daughter.</p>
+        <p>The people who supply these doses know exactly what they're moving. And in too many states, when a young person dies from that dose, the dealer faces a drug charge — not a homicide charge.</p>
+        <p>MAPDA exists to change that, everywhere.</p>
+      </div>
+      <a href="#plan" class="fight-btn">See the 5-Front Plan</a>
+    </div>
+  </div>
+</section>
+
+<!-- FIVE FRONTS -->
+<section id="plan" class="content fronts">
+  <div class="container">
+    <div class="section-eyebrow">The Five-Front Plan</div>
+    <h2 class="section-title">Five fights. All winnable.</h2>
+    <p class="section-lede">A coordinated campaign built for moms who pick fights — and win them.</p>
+  </div>
+  <div class="container">
+    <div class="fronts-grid">
+      <div class="front">
+        <svg class="front-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <div class="front-num">Front 01</div>
+        <h3>Win Colorado. Then pick one more.</h3>
+        <p>Join Advance Colorado as a named coalition partner on the ballot initiative. Target one stalled state bill — Connecticut, Virginia, or Hawaii — for a MAPDA-led push.</p>
+        
+      </div>
+      <div class="front">
+        <svg class="front-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <div class="front-num">Front 02</div>
+        <h3>Own the federal bill.</h3>
+        <p>Launch the MAPDA 50 — one mother from every state, photographed on the Capitol steps — behind the Felony Murder for Deadly Fentanyl Distribution Act.</p>
+        
+      </div>
+      <div class="front">
+        <svg class="front-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <div class="front-num">Front 03</div>
+        <h3>Stand the Courtroom Corps.</h3>
+        <p>Bereaved families in matching shirts at every drug-induced homicide trial and sentencing. Prosecutors, judges, juries, and press all notice.</p>
+        
+      </div>
+      <div class="front">
+        <svg class="front-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <div class="front-num">Front 04</div>
+        <h3>Publish the prosecutor scorecard.</h3>
+        <p>Rank every DA by whether they charge fentanyl deaths as homicide. Endorse in races. Primary the refusers. Statutes become real only when prosecutors use them.</p>
+        
+      </div>
+      <div class="front">
+        <svg class="front-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <div class="front-num">Front 05</div>
+        <h3>Write the model bill.</h3>
+        <p>Ship the MAPDA Model Fentanyl Homicide Act — with Good Samaritan carve-outs that neutralize the harm-reduction critique and make laws durable against rollback.</p>
+        
+        
+      </div>
+      <div class="front front-dark">
+        <svg class="front-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <div class="front-num">What's Next</div>
+        <h3>First 90 days. Five commitments.</h3>
+        <p><a href="#ninety">See the 90-day plan →</a></p>
+        
+        <div class="front-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 90 DAYS -->
+<section id="ninety" class="ninety">
+  <div class="container">
+    <div class="section-eyebrow">First 90 Days</div>
+    <h2 class="section-title">We move fast. We move loud.</h2>
+    <p class="section-lede">Five concrete commitments in the first quarter of the campaign.</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>Week 1–4</h4>
+        <p>Endorse the Colorado ballot initiative; place one mother-authored op-ed in a Denver paper.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Week 2–8</h4>
+        <p>Recruit the MAPDA 50 state representatives; schedule the Capitol-steps photo.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Week 4–10</h4>
+        <p>Commission the model bill with outside counsel and a friendly state AG's office.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Week 6–12</h4>
+        <p>Pilot the Courtroom Corps in three cities with active DIH prosecutions.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Week 10–13</h4>
+        <p>Publish the inaugural Prosecutor Scorecard covering five priority states.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORIES -->
+<section id="stories" class="content stories">
+  <div class="container">
+    <div class="section-eyebrow">The Mothers</div>
+    <h2 class="section-title">We are not asking. We are telling.</h2>
+    <p class="section-lede">Every MAPDA member is a mother who lost a child or knows one who did. These are the voices that move legislators — and juries.</p>
+    <div class="stories-grid">
+      <div class="story">
+        <blockquote>"The man who sold my son his last pill got 18 months on a possession-with-intent plea. Eighteen months. My son got a grave. That math is broken, and we are going to fix it."</blockquote>
+        <div class="who">[Mother's name]</div>
+        <div class="where">MAPDA Chapter — [State]</div>
+      </div>
+      <div class="story">
+        <blockquote>"I sat through the sentencing hearing with fourteen other moms in the same shirt. The judge looked up. The dealer's lawyer went pale. That's when I knew we had something."</blockquote>
+        <div class="who">[Mother's name]</div>
+        <div class="where">MAPDA Courtroom Corps</div>
+      </div>
+      <div class="story">
+        <blockquote>"The bartender who overserved the driver who killed my niece went to prison. The dealer who sold my daughter the pill that killed her got six months. Explain that to me."</blockquote>
+        <div class="who">[Mother's name]</div>
+        <div class="where">MAPDA Founding Member</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WIN -->
+<section class="win">
+  <div class="container">
+    <h2>By 2028, MAPDA is the name policymakers associate with fentanyl homicide legislation.</h2>
+    <p>And every mother in America who loses a child to a poisoned pill knows exactly where to turn to make the dealer pay.</p>
+    <a href="#join" class="btn btn-outline btn-big">Be Part of That</a>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section id="join" class="join">
+  <div class="container">
+    <h2>Join the MAPDA 50.</h2>
+    <p>We are looking for one mother from every state who is ready to show up, speak up, and stand up. Enter your email and we will be in touch within 48 hours.</p>
+    <form class="join-form" onsubmit="event.preventDefault(); alert('Thank you. A MAPDA organizer will reach out within 48 hours.');">
+      <input type="email" placeholder="Your email address" required />
+      <input type="text" placeholder="Your state" required />
+      <button type="submit" class="btn">Sign Up</button>
+    </form>
+    <p class="join-note">We will never share your information. No spam. Just the fight.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container" style="text-align: center;">
+    © 2026 MAPDA — Mothers for Awareness and Prevention of Drug Abuse
+  </div>
+</footer>
+
+</body>
+</html>
